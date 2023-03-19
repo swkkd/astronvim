@@ -15,6 +15,11 @@ return {
   { import = "astrocommunity.editing-support/todo-comments-nvim" },
   { import = "astrocommunity.editing-support/zen-mode-nvim" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
+  { import = "astrocommunity.media.drop-nvim" },
+  { import = "astrocommunity.bars-and-lines.scope-nvim" },
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
+  -- { import = "astrocommunity.media.pets-nvim" },
 
   -- Neovim plugin for splitting/joining blocks of code like arrays, hashes, statements, objects, dictionaries, etc.
   { import = "astrocommunity.editing-support/treej" },

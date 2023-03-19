@@ -1,7 +1,8 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 --
 --set cmdheight to 1 to show more lines in the command line
-vim.o.cmdheight = 1
+-- vim.o.cmdheight = 1
+-- vim.opt.cmdheight = 1
 return {
   opt = {
     -- set to true or false etc.
