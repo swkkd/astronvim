@@ -1,7 +1,7 @@
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.colorscheme.nightfox", enabled = true },
-  { import = "astrocommunity.colorscheme.kanagawa", enabled = true },
+  { import = "astrocommunity.colorscheme.nightfox",                        enabled = true },
+  { import = "astrocommunity.colorscheme.kanagawa",                        enabled = true },
   { import = "astrocommunity.colorscheme.rose-pine" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.everforest" },
