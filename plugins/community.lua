@@ -17,7 +17,8 @@ return {
   { import = "astrocommunity.syntax.hlargs-nvim" },
   { import = "astrocommunity.media.drop-nvim" },
   { import = "astrocommunity.bars-and-lines.scope-nvim" },
-  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  -- BUG: this plugin causes cursor caret not to move back when moving from shorter lines
+  -- { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
   -- { import = "astrocommunity.media.pets-nvim" },
 
