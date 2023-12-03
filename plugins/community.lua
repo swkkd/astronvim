@@ -4,11 +4,15 @@ return {
   -- example of imporing a plugin, comment out to use it or add your own
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
-  -- { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
+  -- {import = "astrocommunity.editing-support.chatgpt-nvim"},
+  { import = "astrocommunity.scrolling.nvim-scrollbar"},
+  { import = "astrocommunity.editing-support.vim-move"},
+  -- { import = "astrocommunity.code-runner.executor-nvim"},
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
   { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
-  { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
   -- { import = "astrocommunity.scrolling.mini-animate" },
   { import = "astrocommunity.scrolling.satellite-nvim" },

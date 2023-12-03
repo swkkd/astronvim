@@ -6,6 +6,7 @@
 return {
   opt = {
     -- set to true or false etc.
+    scrolloff = 8,         -- sets vim.opt.scrolloff
     relativenumber = true, -- sets vim.opt.relativenumber
     number = true,         -- sets vim.opt.number
     spell = false,         -- sets vim.opt.spell
@@ -16,12 +17,7 @@ return {
     softtabstop = 4,
     shiftwidth = 4,
     list = false,
-    showbreak = "↪ ",
-    title = true,
-    titlestring = "%<%F%=%l/%L - nvim",
-    listchars = {
-      tab = "→ ",
-      eol = "↲",
+    showbreak = "↪ ", title = true, titlestring = "%<%F%=%l/%L - nvim", listchars = { tab = "→ ", eol = "↲",
       nbsp = "␣",
       trail = "•",
       extends = "⟩",
