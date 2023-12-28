@@ -55,7 +55,6 @@ return {
 -- "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠀⠀⠀⠀⠀⠀⠀⠀",
 
 --       }
-      
       return opts
     end,
   },
@@ -323,10 +322,5 @@ return {
     "mfussenegger/nvim-dap",
     cond = not vim.g.vscode,
     dependencies = { "theHamsta/nvim-dap-virtual-text", config = true },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    cond = not vim.g.vscode,
-    opts = function(_, opts) require("astronvim.utils").extend_tbl(opts.filetype_exclude, { "oil" }) end,
   },
 }

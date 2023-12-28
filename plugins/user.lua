@@ -68,14 +68,14 @@ return {
   --       handle = {
   --         color = colors.bg_highlight,
   --       },
-  --       -- marks = {
-  --       --   Search = { color = colors.orange },
-  --       --   Error = { color = colors.error },
-  --       --   Warn = { color = colors.warning },
-  --       --   Info = { color = colors.info },
-  --       --   Hint = { color = colors.hint },
-  --       --   Misc = { color = colors.purple },
-  --       -- },
+  --       marks = {
+  --         Search = { color = colors.orange },
+  --         Error = { color = colors.error },
+  --         Warn = { color = colors.warning },
+  --         Info = { color = colors.info },
+  --         Hint = { color = colors.hint },
+  --         Misc = { color = colors.purple },
+  --       },
   --     }
   --   end,
   -- },
@@ -110,13 +110,6 @@ return {
     "mechatroner/rainbow_csv",
     cond = not vim.g.vscode,
     ft = { "csv", "tsv" },
-  },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    cond = not vim.g.vscode,
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    event = "User AstroFile",
-    config = function(_, opts) require("rainbow-delimiters.setup")(opts) end,
   },
   {
     "luckasRanarison/nvim-devdocs",
@@ -186,4 +179,195 @@ return {
       "SnipLive",
     },
   },
+  {
+    "alexghergh/nvim-tmux-navigation",
+    enabled = function()
+      if vim.fn.has "win32" == 1 then
+        return false
+      end
+      return true
+    end,
+    event = "VeryLazy",
+    opts = {
+      keybindings = {
+        left = "<C-h>",
+        down = "<C-j>",
+        up = "<C-k>",
+        right = "<C-l>",
+        last_active = "<C-\\>",
+        next = "<C-Space>",
+      },
+    },
+  },
+
+
+  { "b0o/schemastore.nvim" },
+  {
+    "moll/vim-bbye",
+    cmd = { "Bdelete", "Bwipeout" },
+  },
+  {
+  "okuuva/auto-save.nvim",
+  cmd = "ASToggle", -- optional for lazy loading on command
+  event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
+  opts = {
+    -- your config goes here
+    -- or just leave it empty :)
+  },
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = "CursorHold",
+    config = function()
+      require("illuminate").configure {
+        providers = {
+          "lsp",
+          "treesitter",
+          "regex",
+        },
+        under_cursor = false,
+      }
+    end,
+  },
+  {
+    "aznhe21/actions-preview.nvim",
+    event = "LspAttach",
+  },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    event = "BufReadPost",
+    config = function()
+      local rainbow_delimiters = require "rainbow-delimiters"
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+          vim = rainbow_delimiters.strategy["local"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
+      }
+    end,
+  },
+
+  {
+    "gbprod/cutlass.nvim",
+    event = "BufReadPost",
+    opts = {
+      cut_key = "x",
+      override_del = true,
+      exclude = {},
+      registers = {
+        select = "_",
+        delete = "_",
+        change = "_",
+      },
+    },
+  },
+  {
+    "smoka7/multicursors.nvim",
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    opts = {
+      updatetime = 10,
+      hint_config = false,
+    },
+    dependencies = {
+      "smoka7/hydra.nvim",
+    },
+  },
+  {
+    "olimorris/persisted.nvim",
+    event = "VimEnter",
+    opts = {
+      save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
+      silent = true, -- silent nvim message when sourcing session file
+      use_git_branch = true, -- create session files based on the branch of the git enabled repository
+      autosave = true, -- automatically save session files when exiting Neovim
+      should_autosave = nil, -- function to determine if a session should be autosaved
+      autoload = true, -- automatically load the session for the cwd on Neovim startup
+      on_autoload_no_session = nil,
+      follow_cwd = true,
+      -- ignored_dirs = {
+      --   "~/.config",
+      --   "~/.local/nvim",
+      -- },
+      telescope = { -- options for the telescope extension
+        reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
+      },
+      config = function()
+        vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+        -- require("persisted").setup()
+        require("telescope").load_extension "persisted"
+      end,
+    },
+  },
+  {
+    'Wansmer/symbol-usage.nvim',
+    event = 'BufReadPre', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+    config = function()
+      local function text_format(symbol)
+      local res = {}
+
+      local round_start = { "", "SymbolUsageRounding" }
+      local round_end = { "", "SymbolUsageRounding" }
+
+      if symbol.references then
+        local usage = symbol.references <= 1 and "usage" or "usages"
+        local num = symbol.references == 0 and "no" or symbol.references
+        table.insert(res, round_start)
+        table.insert(res, { "󰌹 ", "SymbolUsageRef" })
+        table.insert(res, { ("%s %s"):format(num, usage), "SymbolUsageContent" })
+        table.insert(res, round_end)
+      end
+
+      if symbol.definition then
+        if #res > 0 then
+          table.insert(res, { " ", "NonText" })
+        end
+        table.insert(res, round_start)
+        table.insert(res, { "󰳽 ", "SymbolUsageDef" })
+        table.insert(res, { symbol.definition .. " defs", "SymbolUsageContent" })
+        table.insert(res, round_end)
+      end
+
+      if symbol.implementation then
+        if #res > 0 then
+          table.insert(res, { " ", "NonText" })
+        end
+        table.insert(res, round_start)
+        table.insert(res, { "󰡱 ", "SymbolUsageImpl" })
+        table.insert(res, { symbol.implementation .. " impls", "SymbolUsageContent" })
+        table.insert(res, round_end)
+      end
+
+      return res
+    end
+
+    local function h(name) return vim.api.nvim_get_hl(0, { name = name }) end
+
+    -- hl-groups can have any name
+    vim.api.nvim_set_hl(0, 'SymbolUsageRounding', { fg = h('CursorLine').bg, italic = true })
+    vim.api.nvim_set_hl(0, 'SymbolUsageContent', { bg = h('CursorLine').bg, fg = h('Comment').fg, italic = true })
+    vim.api.nvim_set_hl(0, 'SymbolUsageRef', { fg = h('Function').fg, bg = h('CursorLine').bg, italic = true })
+    vim.api.nvim_set_hl(0, 'SymbolUsageDef', { fg = h('Type').fg, bg = h('CursorLine').bg, italic = true })
+    vim.api.nvim_set_hl(0, 'SymbolUsageImpl', { fg = h('@keyword').fg, bg = h('CursorLine').bg, italic = true })
+
+
+    require("symbol-usage").setup {
+      text_format = text_format,
+      vt_position = 'end_of_line',
+    }
+    end
+  }
 }

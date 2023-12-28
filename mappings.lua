@@ -18,10 +18,10 @@ function TM(key, command) -- Sets (terminal mode) key - {string}
 end
 
 NM("<END>", ":ZenMode<CR>") -- ZenMode
-NM("<Tab>", ":bnext<cr>")   -- Switch to the next tab on <Tab>
-NM("<S-Tab>", ":bpev<cr>") -- Switch to the previous tab on <Shift + Tab>
+NM("<Tab>", ":bn<cr>")   -- Switch to the next tab on <Tab>
+NM("<S-Tab>", ":bp<cr>") -- Switch to the previous tab on <Shift + Tab>
 IM("<C-s>", "<ESC>:w<cr>")  -- Save file in input mode
-NM("<BS>", ":bd<cr>") -- Close current tab on BackSpace
+NM("<BS>", ":Bdelete<cr>") -- Close current tab on BackSpace
 
 -- NM("<S-Tab>", ":bprev<cr>") -- Switch to the previous tab on <Shift + Tab>
 
@@ -111,14 +111,14 @@ return function(maps)
   maps.x[">"] = { ">gv", desc = "Indent line" }
 
   --[ Move cursor with CTRL in insert, command modes
-  maps.c["<C-h>"] = { "<Left>", desc = "Left" }
-  maps.c["<C-j>"] = { "<Down>", desc = "Down" }
-  maps.c["<C-k>"] = { "<Up>", desc = "Up" }
-  maps.c["<C-l>"] = { "<Right>", desc = "Right" }
-  maps.i["<C-h>"] = { "<Left>", desc = "Left" }
-  maps.i["<C-j>"] = { "<Down>", desc = "Down" }
-  maps.i["<C-k>"] = { "<Up>", desc = "Up" }
-  maps.i["<C-l>"] = { "<Right>", desc = "Right" }
+  -- maps.c["<C-h>"] = { "<Left>", desc = "Left" }
+  -- maps.c["<C-j>"] = { "<Down>", desc = "Down" }
+  -- maps.c["<C-k>"] = { "<Up>", desc = "Up" }
+  -- maps.c["<C-l>"] = { "<Right>", desc = "Right" }
+  -- maps.i["<C-h>"] = { "<Left>", desc = "Left" }
+  -- maps.i["<C-j>"] = { "<Down>", desc = "Down" }
+  -- maps.i["<C-k>"] = { "<Up>", desc = "Up" }
+  -- maps.i["<C-l>"] = { "<Right>", desc = "Right" }
   --]
 
   --[ Better ^ and $
