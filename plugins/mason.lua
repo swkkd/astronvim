@@ -34,9 +34,10 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = list_insert_unique(opts.ensure_installed, {
+        "gopls",
         -- "prettier",
-        "stylua",
-        "pyink",
+        -- "stylua",
+        -- "pyink",
       })
       opts.handlers = {
         luacheck = function() end,

@@ -23,10 +23,17 @@ NM("<S-Tab>", ":bp<cr>") -- Switch to the previous tab on <Shift + Tab>
 IM("<C-s>", "<ESC>:w<cr>")  -- Save file in input mode
 NM("<BS>", ":Bdelete<cr>") -- Close current tab on BackSpace
 
+-- accelerated jk using plugin
+NM("j", "<Plug>(accelerated_jk_gj)")
+NM("k", "<Plug>(accelerated_jk_gk)")
+
 -- NM("<S-Tab>", ":bprev<cr>") -- Switch to the previous tab on <Shift + Tab>
 
--- VM("<S-l>", "<ESC>$")
--- VM("<S-h>", "<ESC>^")
+NM("<S-l>", "$")
+NM("<S-h>", "^")
+
+VM("<S-l>", "$")
+VM("<S-h>", "^")
 
 -- Move Lines
 -- NM("<S-j>", "o<ESC>")
@@ -103,10 +110,10 @@ return function(maps)
     '<Esc>"fyiw<CR>gv:s/<C-r>f/<C-r>f/g<Left><Left>',
     desc = "Find and replace visual",
   }
-  maps.n["<C-d>"] = { "<C-d>zz", desc = "Scroll half page down" }
-  maps.n["<C-u>"] = { "<C-u>zz", desc = "Scroll half page up" }
-  maps.n["<C-f>"] = { "<C-f>zz", desc = "Scroll page down" }
-  maps.n["<C-b>"] = { "<C-b>zz", desc = "Scroll page up" }
+  -- maps.n["<C-d>"] = { "<C-d>zz", desc = "Scroll half page down" }
+  -- maps.n["<C-u>"] = { "<C-u>zz", desc = "Scroll half page up" }
+  -- maps.n["<C-f>"] = { "<C-f>zz", desc = "Scroll page down" }
+  -- maps.n["<C-b>"] = { "<C-b>zz", desc = "Scroll page up" }
   maps.x["<"] = { "<gv", desc = "Deindent line" }
   maps.x[">"] = { ">gv", desc = "Indent line" }
 

@@ -16,7 +16,7 @@ return {
     tabstop = 4,
     softtabstop = 4,
     shiftwidth = 4,
-    list = false,
+    list = true,
     showbreak = "↪ ", title = true, titlestring = "%<%F%=%l/%L - nvim", listchars = { tab = "→ ", eol = "↲",
       nbsp = "␣",
       trail = "•",

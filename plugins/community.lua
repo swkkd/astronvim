@@ -5,6 +5,7 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.gruvbox-baby" },
   -- {import = "astrocommunity.editing-support.chatgpt-nvim"},
   { import = "astrocommunity.scrolling.nvim-scrollbar"},
   { import = "astrocommunity.editing-support.vim-move"},
@@ -12,6 +13,7 @@ return {
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
   { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
+  { import = "astrocommunity.motion.mini-surround" },
   -- { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
   -- { import = "astrocommunity.scrolling.mini-animate" },

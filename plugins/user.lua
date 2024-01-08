@@ -1,4 +1,70 @@
 return {
+  {
+    "rainbowhxch/accelerated-jk.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require('accelerated-jk').setup({
+        mode = 'time_driven',
+        enable_deceleration = false,
+        acceleration_motions = {},
+        acceleration_limit = 150,
+        acceleration_table = { 7,12,17,21,24,26,28,30 },
+        -- when 'enable_deceleration = true', 'deceleration_table = { {200, 3}, {300, 7}, {450, 11}, {600, 15}, {750, 21}, {900, 9999} }'
+        deceleration_table = { {150, 9999} }
+    })
+    end,
+  },
+--   {
+--     "zbirenbaum/copilot.lua",
+--   cmd = "Copilot",
+--   event = "InsertEnter",
+--   config = function()
+--   require('copilot').setup({
+--     panel = {
+--     enabled = true,
+--     auto_refresh = true,
+--     keymap = {
+--       jump_prev = "[[",
+--       jump_next = "]]",
+--       accept = "<CR>",
+--       refresh = "gr",
+--       open = "<F2>"
+--     },
+--     layout = {
+--       position = "right", -- | top | left | right
+--       ratio = 0.4
+--     },
+--   },
+--   suggestion = {
+--     enabled = true,
+--     auto_trigger = true,
+--     debounce = 75,
+--     keymap = {
+--       accept = "<C-k>",
+--       accept_word = "<C-l>",
+--       -- accept_line = false,
+--       next = "<M-]>",
+--       prev = "<M-[>",
+--       dismiss = "<C-]>",
+--     },
+--   },
+--   filetypes = {
+--     yaml = false,
+--     markdown = false,
+--     help = false,
+--     gitcommit = false,
+--     gitrebase = false,
+--     hgcommit = false,
+--     svn = false,
+--     cvs = false,
+--     ["."] = false,
+--   },
+--   copilot_node_command = 'node', -- Node.js version must be > 18.x
+--   server_opts_overrides = {},
+-- })
+--   end,
+--
+--   },
   -- You can also add new plugins here as well:
   -- Add plugins, the lazy syntax
   -- add go server
@@ -15,10 +81,12 @@ return {
   --   "Darazaki/indent-o-matic",
   --   disable = true,
   -- },
-  {
-    "echasnovski/mini.nvim",
-    config = function() require("mini.surround").setup() end,
-  },
+  -- {
+  --   "echasnovski/mini.nvim",
+  --   config = function()
+  --     require("mini.surround").setup()
+  --   end,
+  -- },
   {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
@@ -206,15 +274,15 @@ return {
     "moll/vim-bbye",
     cmd = { "Bdelete", "Bwipeout" },
   },
-  {
-  "okuuva/auto-save.nvim",
-  cmd = "ASToggle", -- optional for lazy loading on command
-  event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
-  opts = {
-    -- your config goes here
-    -- or just leave it empty :)
-  },
-  },
+  -- {
+  -- "okuuva/auto-save.nvim",
+  -- cmd = "ASToggle", -- optional for lazy loading on command
+  -- event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
+  -- opts = {
+  --   -- your config goes here
+  --   -- or just leave it empty :)
+  -- },
+  -- },
   {
     "RRethy/vim-illuminate",
     event = "CursorHold",
@@ -286,32 +354,32 @@ return {
       "smoka7/hydra.nvim",
     },
   },
-  {
-    "olimorris/persisted.nvim",
-    event = "VimEnter",
-    opts = {
-      save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
-      silent = true, -- silent nvim message when sourcing session file
-      use_git_branch = true, -- create session files based on the branch of the git enabled repository
-      autosave = true, -- automatically save session files when exiting Neovim
-      should_autosave = nil, -- function to determine if a session should be autosaved
-      autoload = true, -- automatically load the session for the cwd on Neovim startup
-      on_autoload_no_session = nil,
-      follow_cwd = true,
-      -- ignored_dirs = {
-      --   "~/.config",
-      --   "~/.local/nvim",
-      -- },
-      telescope = { -- options for the telescope extension
-        reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
-      },
-      config = function()
-        vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
-        -- require("persisted").setup()
-        require("telescope").load_extension "persisted"
-      end,
-    },
-  },
+  -- {
+  --   "olimorris/persisted.nvim",
+  --   event = "VimEnter",
+  --   opts = {
+  --     save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
+  --     silent = true, -- silent nvim message when sourcing session file
+  --     use_git_branch = true, -- create session files based on the branch of the git enabled repository
+  --     autosave = true, -- automatically save session files when exiting Neovim
+  --     should_autosave = nil, -- function to determine if a session should be autosaved
+  --     autoload = true, -- automatically load the session for the cwd on Neovim startup
+  --     on_autoload_no_session = nil,
+  --     follow_cwd = true,
+  --     -- ignored_dirs = {
+  --     --   "~/.config",
+  --     --   "~/.local/nvim",
+  --     -- },
+  --     telescope = { -- options for the telescope extension
+  --       reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
+  --     },
+  --     config = function()
+  --       vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+  --       -- require("persisted").setup()
+  --       require("telescope").load_extension "persisted"
+  --     end,
+  --   },
+  -- },
   {
     'Wansmer/symbol-usage.nvim',
     event = 'BufReadPre', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
